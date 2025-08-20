@@ -2,8 +2,15 @@ from behave import given, when, then
 
 def before_all(context):
     print("Before all tests")
-    context.inputENV = context.config.userdata.get("ENV")
-    print(context.inputENV)
+    inputENV = context.config.userdata.get("ENV")
+    print("Environment: {inputENV}")
+    if inputENV == "sys":
+        context.baseURL = "https://www.sys.com"
+    elif inputENV == "dev": 
+        context.baseURL = "https://www.dev.com" 
+    elif inputENV == "prod":
+        context.baseURL = "https://www.prod.com"
+    print(context.baseURL)
 
 @given("user starts the browser")
 def step_impl(context):
@@ -20,9 +27,9 @@ def step_impl(context):
 @then("user should navigate to Home Page")
 def step_impl(context):
     print("Then user should navigate to Home Page")
-    print(context.inputENV)
+    print(context.baseURL)
 
 @then("user should not navigate to Home Page")
 def step_impl(context):
     print("Then user should not navigate to Home Page")
-    print(context.inputENV)
+    print(context.baseURL)
