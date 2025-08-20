@@ -45,3 +45,4 @@ def step_impl(context):
     elif inputENV == "prod":
         context.baseURL = "https://www.prod.com"
     print(context.baseURL)
+    print(f"connecting to" f"{context.baseURL} with {inputENV} environment")
