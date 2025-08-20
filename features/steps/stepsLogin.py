@@ -46,3 +46,16 @@ def step_impl(context):
         context.baseURL = "https://www.prod.com"
     print(context.baseURL)
     print(f"connecting to" f"{context.baseURL} with {inputENV} environment")
+    log_github(f"Connecting to {context.baseURL} with {inputENV} environment", level="notice")
+
+def log_github(message,level="notice"):
+    import logging
+    logger = logging.getLogger("github")
+    if level == "notice":
+        logger.info(message)
+    elif level == "warning":
+        logger.warning(message)
+    elif level == "error":
+        logger.error(message)
+    else:
+        logger.debug(message)
