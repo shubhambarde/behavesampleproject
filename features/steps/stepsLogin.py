@@ -1,5 +1,10 @@
 from behave import given, when, then
 
+def before_all(context):
+    print("Before all tests")
+    inputENV = context.config.userdata.get("ENV")
+    print(inputENV)
+
 @given("user starts the browser")
 def step_impl(context):
     print("Given user starts the browser")
@@ -15,3 +20,7 @@ def step_impl(context):
 @then("user should navigate to Home Page")
 def step_impl(context):
     print("Then user should navigate to Home Page")
+
+@then("user should not navigate to Home Page")
+def step_impl(context):
+    print("Then user should not navigate to Home Page")

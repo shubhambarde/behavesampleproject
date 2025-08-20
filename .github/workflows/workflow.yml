@@ -1,5 +1,26 @@
 name: CI
-on: workflow_dispatch
+on: 
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'select environment'
+        required: true
+        default: 'sys'
+        type: choice
+        options:
+          - sys
+          - dev
+          - prod
+      tags:
+        description: 'select tags'
+        required: true
+        default: 'smoke'
+        type: choice
+        options:
+          - smoke
+          - regression
+          - performance
+          - security
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -19,4 +40,14 @@ jobs:
           pip install -r requirements.txt
       
       - name: Run Behave test
-        run: behave
+        run: |
+          echo "Running tests in environment: ${{ github.event.inputs.environment }}"
+          echo "Running tests with tags: ${{ github.event.inputs.tags }}"
+
+          export TEST_ENV=${{ github.event.inputs.environment }}
+          
+          if [ "${{ github.event.inputs.tags }}" = "all" ]; then
+            behave --define ENV=$TEST_ENV
+          else
+            behave --tags="${{ github.event.inputs.tags }}" --define ENV=$TEST_ENV
+          fi
