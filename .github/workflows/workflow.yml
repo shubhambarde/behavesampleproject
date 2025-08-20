@@ -17,8 +17,8 @@ on:
         default: 'smoke'
         type: choice
         options:
-          - smoke
-          - regression
+          - Smoke
+          - Regression
           - performance
           - security
 jobs:
