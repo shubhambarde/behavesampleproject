@@ -2,8 +2,8 @@ from behave import given, when, then
 
 def before_all(context):
     print("Before all tests")
-    inputENV = context.config.userdata.get("ENV")
-    print(inputENV)
+    context.inputENV = context.config.userdata.get("ENV")
+    print(context.inputENV)
 
 @given("user starts the browser")
 def step_impl(context):
