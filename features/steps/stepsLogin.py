@@ -20,7 +20,9 @@ def step_impl(context):
 @then("user should navigate to Home Page")
 def step_impl(context):
     print("Then user should navigate to Home Page")
+    print(context.inputENV)
 
 @then("user should not navigate to Home Page")
 def step_impl(context):
     print("Then user should not navigate to Home Page")
+    print(context.inputENV)
