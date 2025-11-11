@@ -47,6 +47,7 @@ def step_impl(context):
     print(context.baseURL)
     print(f"connecting to" f"{context.baseURL} with {inputENV} environment")
     log_github(f"Connecting to {context.baseURL} with {inputENV} environment", level="notice")
+    
 
 def log_github(message,level="notice"):
     import logging

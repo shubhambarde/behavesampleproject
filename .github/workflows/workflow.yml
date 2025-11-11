@@ -21,6 +21,15 @@ on:
           - Regression
           - performance
           - security
+      functionality:
+        description: 'select the functionlity to be tested'
+        required: true
+        default: 'login'
+        type: choice
+        options:
+          - login
+          - signup
+          - checkout
 jobs:
   build:
     runs-on: ubuntu-latest
